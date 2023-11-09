@@ -1,16 +1,18 @@
+// Aquí crearemos la ventana para loguearse al programa
 package ingresar;
-
+// Importamos las librerias necesarias
 import javax.swing.JOptionPane;
 
-public class Login extends javax.swing.JFrame {
 
+public class Login extends javax.swing.JFrame {
+    // Utilizamos el método initComponents para crear la ventana
     public Login() {
         initComponents();
         this.setTitle("Login");
         this.setLocationRelativeTo(null);
 
     }
-    
+    // El método limpiarCampos permitirá borrar los datos ingresados
     private void limpiarCampos() {
         jPasswordUsuario.setText(null);
         jPasswordPass.setText(null);
@@ -82,16 +84,17 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    // Cuando se presione el botón iniciar
     private void iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarActionPerformed
+        // Se verifica que los campos no estén vacíos
         if (jPasswordUsuario.getText().equals("") || jPasswordPass.getText().equals("")) {
-
+            // Si lo están, se solicita la usuario que ingrese usuario y contraseña
             JOptionPane.showMessageDialog(null, "Ingrese un usuario y contraseña");
-            
+        //Sino    
         } else {
-
+            // Si el usuario y contraseña coinciden 
             if (jPasswordUsuario.getText().equals("admin") && jPasswordPass.getText().equals("admin")) {
-                
+                // Se ejecuta el programa principal de registro de pacientes
                 this.setVisible(false);
                 java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {
@@ -101,7 +104,7 @@ public class Login extends javax.swing.JFrame {
                 });
                 
                 
-
+            // Sino, un mensaje notifica al usuario, que deberá reingresar los datos
             } else {
                 JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
                 limpiarCampos();

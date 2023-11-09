@@ -1,8 +1,10 @@
+// Aquí se definira la clase Paciente 
+
 package ingresar;
 
 public class Paciente {
     
-
+    // Aquí definimos los atributos de la clase Paciente, idPaciente, nombre, apellido, fechaNacimiento, dni, tipoSangre y especialidad requerida. 
     private int idPaciente;
     static int contadorPaciente;
     private String nombre;
@@ -12,10 +14,12 @@ public class Paciente {
     private String tipoSangre;
     private String especialidad;
     
+    
+    // Creamos un constructor vacío
     Paciente() {
 
     }
-
+    // Constructor
     public Paciente(int idPaciente, String tipoSangre, String especialidad, String nombre, String apellido, String dni, String fechaNacimiento) {
 
         
@@ -29,7 +33,8 @@ public class Paciente {
         this.especialidad = especialidad;
 
     }
-
+    
+    // Getters and Setters
     public static int getContadorPaciente() {
         return contadorPaciente;
     }
@@ -93,7 +98,8 @@ public class Paciente {
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
-
+    
+    // toString
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
