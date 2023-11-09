@@ -1,10 +1,14 @@
 package ingresar;
 
-public class Paciente extends Persona {
+public class Paciente {
     
 
     private int idPaciente;
     static int contadorPaciente;
+    private String nombre;
+    private String apellido;
+    private String fechaNacimiento;
+    private String dni;
     private String tipoSangre;
     private String especialidad;
     
@@ -14,9 +18,13 @@ public class Paciente extends Persona {
 
     public Paciente(int idPaciente, String tipoSangre, String especialidad, String nombre, String apellido, String dni, String fechaNacimiento) {
 
-        super(nombre, apellido, dni, fechaNacimiento);
+        
         Paciente.contadorPaciente++;
         this.idPaciente = Paciente.contadorPaciente;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.fechaNacimiento = fechaNacimiento;
         this.tipoSangre = tipoSangre;
         this.especialidad = especialidad;
 
@@ -36,6 +44,38 @@ public class Paciente extends Persona {
 
     public void setIdPaciente(int idPaciente) {
         this.idPaciente = idPaciente;
+    }
+    
+    public String getFechaNacimiento() {
+        return this.fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getNombre() {
+        return this.nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return this.apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getDni() {
+        return this.dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
     public String getTipoSangre() {
@@ -59,13 +99,18 @@ public class Paciente extends Persona {
         StringBuilder sb = new StringBuilder();
         sb.append("Paciente{");
         sb.append("idPaciente=").append(idPaciente);
+        sb.append(", nombre=").append(nombre);
+        sb.append(", apellido=").append(apellido);
+        sb.append(", fechaNacimiento=").append(fechaNacimiento);
+        sb.append(", dni=").append(dni);
         sb.append(", tipoSangre=").append(tipoSangre);
         sb.append(", especialidad=").append(especialidad);
         sb.append('}');
         return sb.toString();
     }
 
-    
+   
+
 
     
 }
