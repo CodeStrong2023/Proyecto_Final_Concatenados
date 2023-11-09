@@ -1,6 +1,7 @@
 // Aquí crearemos la ventana para loguearse al programa
 package ingresar;
 // Importamos las librerias necesarias
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 
@@ -10,6 +11,7 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         this.setTitle("Login");
         this.setLocationRelativeTo(null);
+        
 
     }
     // El método limpiarCampos permitirá borrar los datos ingresados
@@ -18,8 +20,8 @@ public class Login extends javax.swing.JFrame {
         jPasswordPass.setText(null);
     }
     
+    Usuario admin = new Usuario("admin", "admin");
     
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -87,13 +89,14 @@ public class Login extends javax.swing.JFrame {
     // Cuando se presione el botón iniciar
     private void iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarActionPerformed
         // Se verifica que los campos no estén vacíos
+        
         if (jPasswordUsuario.getText().equals("") || jPasswordPass.getText().equals("")) {
             // Si lo están, se solicita la usuario que ingrese usuario y contraseña
             JOptionPane.showMessageDialog(null, "Ingrese un usuario y contraseña");
         //Sino    
         } else {
             // Si el usuario y contraseña coinciden 
-            if (jPasswordUsuario.getText().equals("admin") && jPasswordPass.getText().equals("admin")) {
+            if (jPasswordUsuario.getText().equals(admin.getUsuario()) && jPasswordPass.getText().equals(admin.getPass())) {
                 // Se ejecuta el programa principal de registro de pacientes
                 this.setVisible(false);
                 java.awt.EventQueue.invokeLater(new Runnable() {
