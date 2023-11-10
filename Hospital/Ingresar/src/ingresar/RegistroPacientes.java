@@ -1,5 +1,5 @@
-package ingresar;
-
+package ingresar;//GEN-FIRST:event_fechaNacimientoActionPerformed
+//GEN-LAST:event_fechaNacimientoActionPerformed
 // Importamos las librerías necesarias para crear el formulario y un arreglo de pacientes 
 import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
@@ -8,24 +8,49 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * 
+ * Se encarga de crea la estructura de datos donde se almacena los datos de cada objeto paciente y dar formato para mostrar por la interfaz, realizando las verificaciones correspondientes a los datos ingresados.
+ * 
+ * @author Concatenados
+ * 
+ */
+
 public class RegistroPacientes extends javax.swing.JFrame {
 
-    // Creamos una nueva tabla llamada (modelo)
+/**
+ *  DefaultTableModel modelo: 
+ * 
+ * Una instancia de la clase DefaultTableModel que se utiliza para representar los datos de una tabla en Swing.
+ * Esta tabla se configura para que todas sus celdas no sean editables.
+ * 
+ */    
+    
+// Creamos una nueva tabla llamada (modelo)
     DefaultTableModel modelo = new DefaultTableModel(){
         
-        @Override public boolean isCellEditable(int row, int column) { 
-        
+        @Override 
+        public boolean isCellEditable(int row, int column) { 
             return false;
-        
         }
-
- 
     };
 
+    /**
+     * ArrayList de pacientes listaPacientes:
+     * Una lista dinámica que almacenará objetos de la clase Paciente.
+     * Se utiliza para almacenar la información de los pacientes que estarán representados en la tabla.
+     */
+    
     // Creamos un arreglo de pacientes
-    ArrayList<Paciente> listaPacientes = new ArrayList<Paciente>();
+    ArrayList<Paciente> listaPacientes = new ArrayList<>();
 
-    // Aquí se formateara el formulario y la tabla
+/**
+ * Este constructor se utiliza para configurar y mostrar una ventana de registro de pacientes con una tabla y otros componentes de formulario en una aplicación de interfaz gráfica 
+ * @see limpiarCampos
+ * @see refrescarTabla
+ */
+
+// Aquí se formateara el formulario y la tabla
     public RegistroPacientes() {
         initComponents();
         this.setTitle("REGISTRO PACIENTES");
@@ -41,16 +66,22 @@ public class RegistroPacientes extends javax.swing.JFrame {
         // Usamos esté método para que la tabla se actualice
         limpiarCampos();
         refrescarTabla();
-
     }
 
+    /**
+     * Este método se encarga de actualizar la tabla con la información actualizada contenida en la lista de pacientes. 
+     * Elimina todas las filas existentes en el modelo de la tabla, luego itera sobre la lista de pacientes y agrega cada paciente como una nueva fila en el modelo de la tabla. 
+     * Finalmente se asegura que los campos del formulario estén limpios después de la actualización.
+     */
+    
     // Este método permite actualizar la tabla
-    public void refrescarTabla() {
+    private void refrescarTabla() {
 
         // Elimina todos los elementos de la tabla
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
+        
         // Por cada paciente en el arreglo (listaPacientes) se creará un objeto de 7 elementos
         for (Paciente paciente : listaPacientes) {
             Object p[] = new Object[7];
@@ -65,13 +96,17 @@ public class RegistroPacientes extends javax.swing.JFrame {
             // Se agrega la fila a la tabla
             modelo.addRow(p);
         }
+        
         // Se agrega el modelo a la tabla (datosPacientes)
         datosPacientes.setModel(modelo);
         limpiarCampos();
-
     }
     
-    public void limpiarCampos(){
+    /**
+     * 
+     */
+    
+    private void limpiarCampos(){
         nombre.setText(null);
         apellido.setText(null);
         dni.setText(null);
@@ -80,21 +115,23 @@ public class RegistroPacientes extends javax.swing.JFrame {
         especialidad.setSelectedIndex(0);
         
     }
+    
+    /**
+     * Este método nos permite verificar que el nombre y apellido ingresados sean válidos
+     * @return True si es valido y False si no lo es.
+     */
 
-    // Este método nos permite verificar que el nombre y apellido ingresados sean válidos
     public boolean validarNombre() {
         // Usamos expresiones regulares para esto
         // Si los String ingresados (nombre) o (apellido) tienen algún caracter que no sea una letra
-        if (!nombre.getText().matches("[A-Za-z]*") || !apellido.getText().matches("[A-Za-z]*")) {
-            // retorna false
-            return false;
-        } else {
-            // Sino retorna true
-            return true;
-        }
+        return !(!nombre.getText().matches("[A-Za-z]*") || !apellido.getText().matches("[A-Za-z]*"));
     }
 
-    // Esté método nos permite validar que el DNI ingresado sea válido
+    /**
+     * Este método nos permite verificar que el nombre y apellido ingresados sean válidos
+     * @return True si es valido y False si no lo es.
+     */
+    
     public boolean validarDni() {
         int valido = 0;
         String numero = "";
@@ -106,7 +143,6 @@ public class RegistroPacientes extends javax.swing.JFrame {
         if (dni.getText().length() > 8 || dni.getText().length() < 7) {
 
             validLength = false;
-
         }
 
         // Y que el String esté compuesto  solo de dígitos
@@ -123,21 +159,18 @@ public class RegistroPacientes extends javax.swing.JFrame {
         }
 
         if (valido == dni.getText().length()) {
-
             esNumero = true;
-
         }
 
         // Si se cumplen ambas condiciones retorna (true)
-        if (validLength == true && esNumero == true) {
-            return true;
-        } else {
-            return false;
-        }
-
+        return validLength == true && esNumero == true;
     }
-
-    // Este método verifica que la fecha ingresada por el usuario sea válida
+    
+    /**
+     * Este método verifica que la fecha ingresada por el usuario sea válida
+     * @return True Si la fecha ingresada por el usuario es válida, False en caso contrario
+     */
+    
     public boolean validarFecha() {
         // Para ello se utilizan expresiones regulares
         String fecha = fechaNacimiento.getText();
@@ -146,32 +179,34 @@ public class RegistroPacientes extends javax.swing.JFrame {
         // Con la clase Matcher comprobamos si la fecha ingresada encajacon el patrón 
         Matcher matcher = pattern.matcher(fecha);
         // Si encaja, retorna true
-        if (matcher.matches()) {
-            return true;
-        } else {
-            return false;
-        }
-
+        return matcher.matches();
     }
 
+    /**
+     * Este método se encarga de verificar que no haya pacientes con el mismo número de DNI
+     * @return true si hay coincidencias (pacientes con el mismo DNI), false en caso contrario.
+     */
+    
     // Este método permite verificar que no hayan pacientes repetidos en la lista de pacientes 
     public boolean validarPaciente() {
         int coincidencias = 0;
         // Itera por el ArrayList de Pacientes listaPacientes
         for (Paciente paciente : listaPacientes) {
             // Si el dni ingresado es igual al de algun paciente ya registrado
-            if (dni.getText().equals(paciente.getDni().toString())) {
+            if (dni.getText().equals(paciente.getDni())) {
                 coincidencias++;
             }
         }
         // Se retorna true
-        if (coincidencias > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return coincidencias > 0;
     }
-    // Este método permite verificar que el dni a buscar sea válido
+    
+    /**
+     * Este método se encarga de verificar la validez de un número de DNI ingresado para búsqueda.
+     * @param dniBusqueda El número de DNI a verificar.
+     * @return true si el DNI es válido (longitud y composición), false en caso contrario.
+     */
+    
     public boolean validarBusqueda(String dniBusqueda) {
         int valido = 0;
         String numero = "";
@@ -181,9 +216,7 @@ public class RegistroPacientes extends javax.swing.JFrame {
 
         // Se comprobará que el DNI ingresado tengo un largo válido
         if (dniBusqueda.length() > 8 || dniBusqueda.length() < 7) {
-
             validLength = false;
-
         }
 
         // Y que el String esté compuesto  solo de dígitos
@@ -198,21 +231,15 @@ public class RegistroPacientes extends javax.swing.JFrame {
         }
 
         if (valido == dniBusqueda.length()) {
-
             esNumero = true;
-
         }
 
         // Si se cumplen ambas condiciones retorna (true)
-        if (validLength == true && esNumero == true) {
-            return true;
-        } else {
-            return false;
-        }
+        return validLength == true && esNumero == true;
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -341,9 +368,15 @@ public class RegistroPacientes extends javax.swing.JFrame {
         getContentPane().add(btnModificarPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, 170, 100));
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
-    // Aquí estableceremos que pasará la usar el botón "Eliminar"
-    private void btnEliminarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPacienteActionPerformed
+    }// </editor-fold>                        
+    
+    /**
+     * Este método se ejecuta cuando se hace clic en el botón "Eliminar" en la interfaz gráfica.
+     * Se encarga de eliminar un paciente de la lista de pacientes y actualizar la tabla.
+     * @param evt El evento asociado al clic en el botón.
+     */
+    
+    private void btnEliminarPacienteActionPerformed(java.awt.event.ActionEvent evt) {                                                    
         // Guardaremos la ubicación de la fila seleccionada
         int fila = datosPacientes.getSelectedRow();
         boolean coincidencia = false;
@@ -353,7 +386,6 @@ public class RegistroPacientes extends javax.swing.JFrame {
         if (fila == -1) {
             // Se solicitara al usuario que seleccione una fila
             JOptionPane.showMessageDialog(null, "Debe seleccionar una fila");
-
         } else {
             // De lo contrario se guardará el id correspondiente a la fila
             String id = modelo.getValueAt(fila, 0).toString();
@@ -365,23 +397,25 @@ public class RegistroPacientes extends javax.swing.JFrame {
                     coincidencia = true;
                     // Guardamos el indice del paciente en la listaPacientes
                     index = listaPacientes.indexOf(paciente);
-
                 }
-
             }
+            
             // Eliminamos el paciente de la lista
             listaPacientes.remove(index);
             // Y actualizamos la tabla
             refrescarTabla();
             // Se muestra un mensaje, el paciente fue eliminado exitosamente
             JOptionPane.showMessageDialog(null, "Paciente eliminado exitosamente");
-
         }
-
-
-    }//GEN-LAST:event_btnEliminarPacienteActionPerformed
-    // Aquí estableceremos que pasará la usar el botón "Agregar"
-    private void btnAgregarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarPacienteActionPerformed
+    }     
+    
+    /**
+     * Este método se ejecuta cuando se hace clic en el botón "Agregar" en la interfaz gráfica.
+     * Se encarga de agregar un nuevo paciente a la lista de pacientes y actualizar la tabla.
+     * @param evt El evento asociado al clic en el botón.
+     */
+    
+    private void btnAgregarPacienteActionPerformed(java.awt.event.ActionEvent evt) {                                                   
 
         // Primero nos aseguramos de que el usuario no deje ningun campo sin completar
         if (nombre.getText().equals("") || apellido.getText().equals("") || dni.getText().equals("") || fechaNacimiento.getText().equals("") || tipoSangre.getSelectedIndex() == 0 || especialidad.getSelectedIndex() == 0 ) {
@@ -401,11 +435,9 @@ public class RegistroPacientes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Debe ingresar una fecha válida, en el formato dd-mm-aaaa");
             // Por último se verifica que el paciente no  se encuentra ya creado en listaPacientes 
         } else if (validarPaciente()) {
-
             JOptionPane.showMessageDialog(null, "El paciente ingresado ya existe");
 
         } else {
-
             // Se crea el nuevo paciente y se almacenan los datos ingresados en los atributos
             Paciente paciente = new Paciente();
             paciente.setIdPaciente(Paciente.contadorPaciente++);
@@ -419,20 +451,23 @@ public class RegistroPacientes extends javax.swing.JFrame {
             listaPacientes.add(paciente);
             // Se actualiza la tabla
             refrescarTabla();
-
         }
-    }//GEN-LAST:event_btnAgregarPacienteActionPerformed
+    }                                                  
 
 
-    private void nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreActionPerformed
+    private void nombreActionPerformed(java.awt.event.ActionEvent evt) {                                       
+    }                                      
 
-    }//GEN-LAST:event_nombreActionPerformed
-
-    private void fechaNacimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaNacimientoActionPerformed
-        
-    }//GEN-LAST:event_fechaNacimientoActionPerformed
-    // Aquí estableceremos que pasará la usar el botón "Modificar"
-    private void btnModificarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarPacienteActionPerformed
+    private void fechaNacimientoActionPerformed(java.awt.event.ActionEvent evt) {                                                
+    }
+    
+    /**
+     * Este método se ejecuta cuando se hace clic en el botón "Modificar" en la interfaz gráfica.
+     * Se encarga de modificar los datos de un paciente seleccionado y actualizar la tabla.
+     * @param evt El evento asociado al clic en el botón.
+     */
+    
+    private void btnModificarPacienteActionPerformed(java.awt.event.ActionEvent evt) {                                                     
         // Guardaremos la ubicación de la fila seleccionada
         int fila = datosPacientes.getSelectedRow();
         int index;
@@ -481,9 +516,15 @@ public class RegistroPacientes extends javax.swing.JFrame {
             }
 
         }
-    }//GEN-LAST:event_btnModificarPacienteActionPerformed
-    // Aquí estableceremos que pasará la usar el botón "Buscar"
-    private void btnBuscarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPacienteActionPerformed
+    }
+    
+    /**
+     * Este método se ejecuta cuando se hace clic en el botón "Buscar" en la interfaz gráfica.
+     * Se encarga de solicitar al usuario un DNI, buscar coincidencias en la lista de pacientes y resaltar la fila correspondiente en la tabla si se encuentra alguna coincidencia.
+     * @param evt El evento asociado al clic en el botón.
+     */
+    
+    private void btnBuscarPacienteActionPerformed(java.awt.event.ActionEvent evt) {                                                  
         // Solicitamos al usuario que ingrese un DNI
         boolean coincidencia = false;
         String dniBusqueda = JOptionPane.showInputDialog("Ingrese un DNI: ");
@@ -513,20 +554,20 @@ public class RegistroPacientes extends javax.swing.JFrame {
                         }
                     }
                 }
+                
                 // Si no hay coincidencia, se notifica al usuario 
                 if (!coincidencia) {
-
                     JOptionPane.showMessageDialog(null, "No se encontraron coincidencias");
-
                 }
             }
-
         }
+    }                                                 
 
-    }//GEN-LAST:event_btnBuscarPacienteActionPerformed
-
-    // Se declaran las variables del formulario
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    /**
+     * Se declaran las variables del formulario y se crean botones.
+     * Variables declaration - do not modify 
+     */
+                        
     private javax.swing.JTextField apellido;
     private javax.swing.JButton btnAgregarPaciente;
     private javax.swing.JButton btnBuscarPaciente;
@@ -547,7 +588,7 @@ public class RegistroPacientes extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField nombre;
     private javax.swing.JComboBox<String> tipoSangre;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 
     private void assertTrue(boolean find) {
         throw new UnsupportedOperationException("Not supported yet.");

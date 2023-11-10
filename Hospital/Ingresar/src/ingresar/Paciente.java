@@ -1,5 +1,13 @@
 package ingresar;
 
+/**
+ * 
+ * Entidad que representa la abstraccion del paciente. 
+ * 
+ * @author Concatenados
+ * 
+ */
+
 public class Paciente {
     
 
@@ -12,9 +20,23 @@ public class Paciente {
     private String tipoSangre;
     private String especialidad;
     
-    Paciente() {
-
+    /**
+     * Constructor vacio
+     */
+    
+    public Paciente() {
     }
+    
+    /**
+     * 
+     * @param idPaciente Numero de identificacion del paciente en la lista generada
+     * @param tipoSangre Tipo de sangre del paciente
+     * @param especialidad Especialidad medica que pida el paciente
+     * @param nombre 
+     * @param apellido
+     * @param dni
+     * @param fechaNacimiento 
+     */
 
     public Paciente(int idPaciente, String tipoSangre, String especialidad, String nombre, String apellido, String dni, String fechaNacimiento) {
 
@@ -29,7 +51,7 @@ public class Paciente {
         this.especialidad = especialidad;
 
     }
-
+//Getters y Setters
     public static int getContadorPaciente() {
         return contadorPaciente;
     }
@@ -94,6 +116,11 @@ public class Paciente {
         this.especialidad = especialidad;
     }
 
+    /**
+     * Metodo que recibe los atributos del paciente, los agrega a una variable que combierte todos los datos en un String
+     * @return 
+     */
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -108,9 +135,4 @@ public class Paciente {
         sb.append('}');
         return sb.toString();
     }
-
-   
-
-
-    
 }

@@ -2,6 +2,14 @@ package ingresar;
 
 import javax.swing.JOptionPane;
 
+/**
+ * 
+ * Clase encargada de ejecutar el frontend donde el usuario verifica contraseña. 
+ * 
+ * @author Concatenados
+ * 
+ */
+
 public class Login extends javax.swing.JFrame {
 
     public Login() {

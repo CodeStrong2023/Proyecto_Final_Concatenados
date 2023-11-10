@@ -1,5 +1,13 @@
 package ingresar;
 
+/**
+ * 
+ * Entidad que representa la abstraccion del usuario. 
+ * 
+ * @author Concatenados
+ * 
+ */
+
 public class Usuario {
 
     private String usuario;
