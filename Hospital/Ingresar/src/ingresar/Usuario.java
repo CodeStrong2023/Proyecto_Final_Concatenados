@@ -13,6 +13,12 @@ public class Usuario {
     private String usuario;
     private String pass;
 
+    /**
+     * Constructor de la clase Usuario.
+     * @param usuario El nombre de usuario.
+     * @param pass    La contraseña del usuario.
+     */
+    
     public Usuario(String usuario, String pass) {
         this.usuario = usuario;
         this.pass = pass;

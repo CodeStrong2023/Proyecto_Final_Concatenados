@@ -12,19 +12,20 @@ import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
 
+    /**
+     * Constructor de la clase Login.
+     */
+    
     public Login() {
         initComponents();
         this.setTitle("Login");
         this.setLocationRelativeTo(null);
-
     }
     
     private void limpiarCampos() {
         jPasswordUsuario.setText(null);
         jPasswordPass.setText(null);
     }
-    
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -91,34 +92,33 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Acción que se ejecuta al hacer clic en el botón "Entrar".
+     * Verifica la autenticación del usuario y abre la ventana de RegistroPacientes si es exitosa.
+     * 
+     * @param evt El evento asociado al clic en el botón.
+     */
+    
     private void iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarActionPerformed
         if (jPasswordUsuario.getText().equals("") || jPasswordPass.getText().equals("")) {
-
             JOptionPane.showMessageDialog(null, "Ingrese un usuario y contraseña");
-            
         } else {
 
             if (jPasswordUsuario.getText().equals("admin") && jPasswordPass.getText().equals("admin")) {
-                
                 this.setVisible(false);
                 java.awt.EventQueue.invokeLater(new Runnable() {
+                    @Override
                     public void run() {
                         new RegistroPacientes().setVisible(true);
-                        
                     }
                 });
-                
-                
 
             } else {
                 JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
                 limpiarCampos();
             }
-
         }
     }//GEN-LAST:event_iniciarActionPerformed
-
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton iniciar;
@@ -128,5 +128,4 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel usuario;
     // End of variables declaration//GEN-END:variables
 
-    
 }
