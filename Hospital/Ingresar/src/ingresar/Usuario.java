@@ -1,21 +1,29 @@
-// Definimos una clase Usuario, para manejar usuarios y contraseñas ademas de niveles de acceso.
 package ingresar;
 
-import java.util.ArrayList;
+/**
+ * 
+ * Entidad que representa la abstraccion del usuario. 
+ * 
+ * @author Concatenados
+ * 
+ */
 
 public class Usuario {
 
-    // Sus atributos serán usuario y pass
     private String usuario;
     private String pass;
 
-    // Método Constructor
+    /**
+     * Constructor de la clase Usuario.
+     * @param usuario El nombre de usuario.
+     * @param pass    La contraseña del usuario.
+     */
+    
     public Usuario(String usuario, String pass) {
         this.usuario = usuario;
         this.pass = pass;
     }
 
-    // Getters and Setters
     private void setUsuario(String usuario) {
         this.usuario = usuario;
     }
@@ -24,11 +32,13 @@ public class Usuario {
         this.pass = pass;
     }
 
-    public String getUsuario() {
-        return this.usuario;
+    private String getUsuario() {
+        return usuario;
     }
 
-    public String getPass() {
-        return this.pass;
-    } 
+    private String getPass() {
+        return pass;
+    }
+    
+    Usuario admin = new Usuario("admin", "admin");
 }

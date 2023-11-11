@@ -1,27 +1,32 @@
-// Aquí crearemos la ventana para loguearse al programa
 package ingresar;
-// Importamos las librerias necesarias
-import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
+/**
+ * 
+ * Clase encargada de ejecutar el frontend donde el usuario verifica contraseña. 
+ * 
+ * @author Concatenados
+ * 
+ */
 
 public class Login extends javax.swing.JFrame {
-    // Utilizamos el método initComponents para crear la ventana
+
+    /**
+     * Constructor de la clase Login.
+     */
+    
     public Login() {
         initComponents();
         this.setTitle("Login");
         this.setLocationRelativeTo(null);
-        
-
     }
-    // El método limpiarCampos permitirá borrar los datos ingresados
+    
     private void limpiarCampos() {
         jPasswordUsuario.setText(null);
         jPasswordPass.setText(null);
     }
-    
-    Usuario admin = new Usuario("admin", "admin");
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -86,37 +91,34 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    // Cuando se presione el botón iniciar
+
+    /**
+     * Acción que se ejecuta al hacer clic en el botón "Entrar".
+     * Verifica la autenticación del usuario y abre la ventana de RegistroPacientes si es exitosa.
+     * 
+     * @param evt El evento asociado al clic en el botón.
+     */
+    
     private void iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarActionPerformed
-        // Se verifica que los campos no estén vacíos
-        
         if (jPasswordUsuario.getText().equals("") || jPasswordPass.getText().equals("")) {
-            // Si lo están, se solicita la usuario que ingrese usuario y contraseña
             JOptionPane.showMessageDialog(null, "Ingrese un usuario y contraseña");
-        //Sino    
         } else {
-            // Si el usuario y contraseña coinciden 
-            if (jPasswordUsuario.getText().equals(admin.getUsuario()) && jPasswordPass.getText().equals(admin.getPass())) {
-                // Se ejecuta el programa principal de registro de pacientes
+
+            if (jPasswordUsuario.getText().equals("admin") && jPasswordPass.getText().equals("admin")) {
                 this.setVisible(false);
                 java.awt.EventQueue.invokeLater(new Runnable() {
+                    @Override
                     public void run() {
                         new RegistroPacientes().setVisible(true);
-                        
                     }
                 });
-                
-                
-            // Sino, un mensaje notifica al usuario, que deberá reingresar los datos
+
             } else {
                 JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
                 limpiarCampos();
             }
-
         }
     }//GEN-LAST:event_iniciarActionPerformed
-
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton iniciar;
@@ -126,5 +128,4 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel usuario;
     // End of variables declaration//GEN-END:variables
 
-    
 }

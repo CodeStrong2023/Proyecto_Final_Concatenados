@@ -1,10 +1,16 @@
-// Aquí se definira la clase Paciente 
-
 package ingresar;
+
+/**
+ * 
+ * Entidad que representa la abstraccion del paciente. 
+ * 
+ * @author Concatenados
+ * 
+ */
 
 public class Paciente {
     
-    // Aquí definimos los atributos de la clase Paciente, idPaciente, nombre, apellido, fechaNacimiento, dni, tipoSangre y especialidad requerida. 
+
     private int idPaciente;
     static int contadorPaciente;
     private String nombre;
@@ -14,12 +20,24 @@ public class Paciente {
     private String tipoSangre;
     private String especialidad;
     
+    /**
+     * Constructor vacio
+     */
     
-    // Creamos un constructor vacío
-    Paciente() {
-
+    public Paciente() {
     }
-    // Constructor
+    
+    /**
+     * 
+     * @param idPaciente Numero de identificacion del paciente en la lista generada
+     * @param tipoSangre Tipo de sangre del paciente
+     * @param especialidad Especialidad medica que pida el paciente
+     * @param nombre 
+     * @param apellido
+     * @param dni
+     * @param fechaNacimiento 
+     */
+
     public Paciente(int idPaciente, String tipoSangre, String especialidad, String nombre, String apellido, String dni, String fechaNacimiento) {
 
         
@@ -33,8 +51,7 @@ public class Paciente {
         this.especialidad = especialidad;
 
     }
-    
-    // Getters and Setters
+//Getters y Setters
     public static int getContadorPaciente() {
         return contadorPaciente;
     }
@@ -98,8 +115,12 @@ public class Paciente {
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
+
+    /**
+     * Metodo que recibe los atributos del paciente, los agrega a una variable que combierte todos los datos en un String
+     * @return 
+     */
     
-    // toString
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -114,9 +135,4 @@ public class Paciente {
         sb.append('}');
         return sb.toString();
     }
-
-   
-
-
-    
 }
